@@ -41,8 +41,6 @@ Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.
 
 O algoritmo realiza três chamadas recursivas (cada uma sobre um subvetor de tamanho ⌊n/2⌋) e trabalho adicional Θ(n log n) por nível.
 
-**Recorrência esperada:**  
-`T(n) = 3 T(⌊n/2⌋) + Θ(n log n)`
 
 ---
 
@@ -99,7 +97,6 @@ function SomaParesMenoresK(A[1..n], K):
     return s1 + s2
 ```
 
-Justifique por que a combinação `s1 + s2` devolve a soma correta e escreva a recorrência para o tempo de execução do algoritmo.
 
 ---
 
