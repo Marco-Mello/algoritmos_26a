@@ -2,98 +2,77 @@
 
 **Nome:**
 
-------------------------------------------------------------------------
+---
 
 ## Q1
 
-Analise o algoritmo a seguir. Justifique formalmente sua corretude
-(explique por que o algoritmo resolve corretamente o problema proposto)
-e analise o tempo de execução.\
-A sua resposta deve estar em **ϴ**, se possível. Caso não seja possível,
-utilize notação **O** com uma análise justa (sem folga) para o pior
-caso.
+Analise o algoritmo a seguir. Justifique formalmente sua corretude (explique por que o algoritmo resolve corretamente o problema proposto) e analise o tempo de execução.  
+A sua resposta deve estar em **ϴ**, se possível. Caso não seja possível, utilize notação **O** com uma análise justa (sem folga) para o pior caso.
 
-**Algoritmo 1: Maior diferença entre dois elementos distintos em valor
-absoluto**
+**Algoritmo 1: Menor diferença entre dois elementos distintos (sem ordenar explicitamente)**
 
--   **INPUT:** Um vetor `A[1...n]` de n inteiros distintos, com `n ≥ 2`\
--   **OUTPUT:** `max₁ ≤ i < j ≤ n |A[i] - A[j]|`
+- **INPUT:** Um vetor `A[1...n]` de n inteiros, com `n ≥ 2`  
+- **OUTPUT:** `min_{1 ≤ i < j ≤ n} |A[i] - A[j]|`
 
-``` pseudo
-Ordene A em ordem crescente usando MERGESORT
-maiorDif ← |A[n] - A[1]|
-retorne maiorDif
+```pseudo
+Use uma tabela de hash para inserir e procurar vizinhos ±1, ±2,... até encontrar menor diferença (descrição informal)
 ```
 
-------------------------------------------------------------------------
+---
 
 ## Q2
 
-Escreva uma **recorrência** para o tempo de execução do algoritmo a
-seguir.\
+Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.  
 (Não é preciso resolver nem justificar.)
 
-**Algoritmo 2: SomaDuplicada**
+**Algoritmo 2: Soma com recursão desigual**
 
--   **INPUT:** Um vetor `A[1...n]`
+- **INPUT:** Um vetor `A[1...n]`
 
-``` pseudo
-se n ≤ 1 então retorna A[1]
+(Descreva a recorrência para o tempo de execução do algoritmo que executa as chamadas recursivas e tem o custo descrito abaixo)
 
-m ← ⌊n/2⌋
+**Custo descrito:** x = Rec(A[1..m]), y=Rec(A[m+1..n]) e z=Rec(A[1..m/2]) (tamanhos diferentes)
 
-x ← SomaDuplicada(A[1...m])
-y ← SomaDuplicada(A[m + 1...n])
+**Recorrência esperada:** `T(n) = T(⌊n/2⌋) + T(⌊n/4⌋) + Θ(n)`
 
-soma ← 0
-para i ← 1 até 3 faça
-    para j ← 1 até n faça
-        soma ← soma + A[j]
-    fim para
-fim para
-
-retorna x + y + soma
-```
-
-------------------------------------------------------------------------
+---
 
 ## Q3
 
-Escolha, para cada item, a função que corresponde ao valor assintótico
-**(justo, sem folga)** e prove.
+Escolha, para cada item, a função que corresponde ao valor assintótico **(justo, sem folga)** e prove.
 
-**(a)**\
-`15n² + 200n + 50` é `O(g(n))` para qual `g(n)`?
+**(a)**  
+(a) 7n^3 - n é `O(g(n))` para qual `g(n)`? Explique e prove com constantes e n0.
 
-**(b)**\
-`50n³ + 10n² - 7` é `Ω(g(n))` para qual `g(n)`?
+**(b)**  
+(b) n^2 log n é `Ω(g(n))` para qual `g(n)`? Explique e prove com constantes e n0.
 
-------------------------------------------------------------------------
+---
 
 ## Q4
 
 Responda cada item e justifique formalmente.
 
-**(a)**\
-Considere dois algoritmos: - Algoritmo A possui tempo `O(n log n)` -
-Algoritmo B possui tempo `O(n²)`
+**(a)**  
+(a) A: O(n^2) vs B: O(n^2) com constantes diferentes
 
-Em teoria, A é mais eficiente que B para entradas suficientemente
-grandes? Justifique.
+Discuta que assintoticamente iguais, mas constantes e memória importam.
 
-**(b)**\
-Se `f(n) = Θ(g(n))` e `h(n) = O(g(n))`, é necessariamente verdade que\
-`f(n) - h(n) = Ω(g(n))`?
+**(b)**  
+(b) Se f=Ω(g) e h=Ω(g), então f+h = Ω(g)?
 
-------------------------------------------------------------------------
+Justifique afirmativa.
+
+---
 
 ## Q5
 
-Escreva um algoritmo de **divisão e conquista** para o seguinte
-problema.\
-Escreva pseudocódigo detalhado e justifique brevemente sua corretude.\
-O algoritmo deve dividir o vetor em duas partes em cada chamada
-recursiva.
+Escreva um algoritmo de **divisão e conquista** para o seguinte problema.  
+Escreva pseudocódigo detalhado e justifique brevemente sua corretude.  
+O algoritmo deve dividir o vetor em duas partes em cada chamada recursiva.
 
--   **INPUT:** Um vetor `A[1..n]` de inteiros não-negativos\
--   **OUTPUT:** A soma dos elementos ímpares de `A`
+- **INPUT:** Um vetor `A[1..n]` de inteiros não-negativos  
+- **OUTPUT:** Soma de A[i] para i par
+
+**Descrição adicional / restrições:** Divida e combine somas de posições pares (ajustar índices na metade direita)
+

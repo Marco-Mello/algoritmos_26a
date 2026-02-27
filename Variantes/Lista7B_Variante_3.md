@@ -1,99 +1,86 @@
-# Lista 7B - Variante 3
+    # Lista 7B - Variante 3
 
-**Nome:**
+    **Nome:**
 
-------------------------------------------------------------------------
+    ---
 
-## Q1
+    ## Q1
 
-Analise o algoritmo a seguir. Justifique formalmente sua corretude
-(explique por que o algoritmo resolve corretamente o problema proposto)
-e analise o tempo de execução.\
-A sua resposta deve estar em **ϴ**, se possível. Caso não seja possível,
-utilize notação **O** com uma análise justa (sem folga) para o pior
-caso.
+    Analise o algoritmo a seguir. Justifique formalmente sua corretude (explique por que o algoritmo resolve corretamente o problema proposto) e analise o tempo de execução.  
+    A sua resposta deve estar em **ϴ**, se possível. Caso não seja possível, utilize notação **O** com uma análise justa (sem folga) para o pior caso.
 
-**Algoritmo 1: Maior diferença entre dois elementos distintos em valor
-absoluto**
+    **Algoritmo 1: Menor diferença entre elementos adjacentes após ordenar (variante com COUNTING SORT)**
 
--   **INPUT:** Um vetor `A[1...n]` de n inteiros distintos, com `n ≥ 2`\
--   **OUTPUT:** `max₁ ≤ i < j ≤ n |A[i] - A[j]|`
+    - **INPUT:** Um vetor `A[1...n]` de n inteiros, com `n ≥ 2`  
+    - **OUTPUT:** `min_{1 ≤ i < j ≤ n} |A[i] - A[j]| (assuma inteiros no intervalo [0, k])`
 
-``` pseudo
-Ordene A em ordem crescente usando MERGESORT
-maiorDif ← |A[n] - A[1]|
-retorne maiorDif
-```
-
-------------------------------------------------------------------------
-
-## Q2
-
-Escreva uma **recorrência** para o tempo de execução do algoritmo a
-seguir.\
-(Não é preciso resolver nem justificar.)
-
-**Algoritmo 2: SomaDuplicada**
-
--   **INPUT:** Um vetor `A[1...n]`
-
-``` pseudo
-se n ≤ 1 então retorna A[1]
-
-m ← ⌊n/2⌋
-
-x ← SomaDuplicada(A[1...m])
-y ← SomaDuplicada(A[m + 1...n])
-
-soma ← 0
-para i ← 1 até 3 faça
-    para j ← 1 até n faça
-        soma ← soma + A[j]
-    fim para
+    ```pseudo
+    Ordene A em ordem crescente usando COUNTING-SORT (assuma inteiro em [0,k])
+menorDif ← ∞
+para i ← 1 até n-1 faça
+    dif ← A[i+1] - A[i]
+    se dif < menorDif então
+        menorDif ← dif
+    fim se
 fim para
+retorne menorDif
+    ```
 
-retorna x + y + soma
-```
+    ---
 
-------------------------------------------------------------------------
+    ## Q2
 
-## Q3
+    Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.  
+    (Não é preciso resolver nem justificar.)
 
-Escolha, para cada item, a função que corresponde ao valor assintótico
-**(justo, sem folga)** e prove.
+    **Algoritmo 2: Quadruplicar (quatro recursões)**
 
-**(a)**\
-`15n² + 200n + 50` é `O(g(n))` para qual `g(n)`?
+    - **INPUT:** Um vetor `A[1...n]`
 
-**(b)**\
-`50n³ + 10n² - 7` é `Ω(g(n))` para qual `g(n)`?
+    (Descreva a recorrência para o tempo de execução do algoritmo que executa as chamadas recursivas e tem o custo descrito abaixo)
 
-------------------------------------------------------------------------
+    **Custo descrito:** Quatro chamadas recursivas sobre subvetores de tamanho ⌊n/2⌋ cada, laço n
 
-## Q4
+    **Recorrência esperada:** `T(n) = 4 T(⌊n/2⌋) + Θ(n)`
 
-Responda cada item e justifique formalmente.
+    ---
 
-**(a)**\
-Considere dois algoritmos: - Algoritmo A possui tempo `O(n log n)` -
-Algoritmo B possui tempo `O(n²)`
+    ## Q3
 
-Em teoria, A é mais eficiente que B para entradas suficientemente
-grandes? Justifique.
+    Escolha, para cada item, a função que corresponde ao valor assintótico **(justo, sem folga)** e prove.
 
-**(b)**\
-Se `f(n) = Θ(g(n))` e `h(n) = O(g(n))`, é necessariamente verdade que\
-`f(n) - h(n) = Ω(g(n))`?
+    **(a)**  
+    (a) 5n log n + 100 é `O(g(n))` para qual `g(n)`? Explique e prove com constantes e n0.
 
-------------------------------------------------------------------------
+    **(b)**  
+    (b) 5n^4 - n^2 é `Ω(g(n))` para qual `g(n)`? Explique e prove com constantes e n0.
 
-## Q5
+    ---
 
-Escreva um algoritmo de **divisão e conquista** para o seguinte
-problema.\
-Escreva pseudocódigo detalhado e justifique brevemente sua corretude.\
-O algoritmo deve dividir o vetor em duas partes em cada chamada
-recursiva.
+    ## Q4
 
--   **INPUT:** Um vetor `A[1..n]` de inteiros não-negativos\
--   **OUTPUT:** A soma dos elementos ímpares de `A`
+    Responda cada item e justifique formalmente.
+
+    **(a)**  
+    (a) A: O(n) vs B: O(n log n). Qual é mais eficiente?
+
+    Explique que O(n) domina O(n log n) para grandes n e comente custos ocultos.
+
+    **(b)**  
+    (b) Se f=O(g) e h=O(g), então f+h = O(g)?
+
+    Justifique sim e discuta quando Θ se aplica.
+
+    ---
+
+    ## Q5
+
+    Escreva um algoritmo de **divisão e conquista** para o seguinte problema.  
+    Escreva pseudocódigo detalhado e justifique brevemente sua corretude.  
+    O algoritmo deve dividir o vetor em duas partes em cada chamada recursiva.
+
+    - **INPUT:** Um vetor `A[1..n]` de inteiros não-negativos  
+    - **OUTPUT:** Número de elementos pares em A
+
+    **Descrição adicional / restrições:** Divida A e some contagens de pares; caso base n=1 verifica A[1] par?1:0
+

@@ -1,99 +1,80 @@
-# Lista 7B - Variante 6
+    # Lista 7B - Variante 6
 
-**Nome:**
+    **Nome:**
 
-------------------------------------------------------------------------
+    ---
 
-## Q1
+    ## Q1
 
-Analise o algoritmo a seguir. Justifique formalmente sua corretude
-(explique por que o algoritmo resolve corretamente o problema proposto)
-e analise o tempo de execução.\
-A sua resposta deve estar em **ϴ**, se possível. Caso não seja possível,
-utilize notação **O** com uma análise justa (sem folga) para o pior
-caso.
+    Analise o algoritmo a seguir. Justifique formalmente sua corretude (explique por que o algoritmo resolve corretamente o problema proposto) e analise o tempo de execução.  
+    A sua resposta deve estar em **ϴ**, se possível. Caso não seja possível, utilize notação **O** com uma análise justa (sem folga) para o pior caso.
 
-**Algoritmo 1: Maior diferença entre dois elementos distintos em valor
-absoluto**
+    **Algoritmo 1: Menor diferença considerando índices distintos e valores repetidos permitidos**
 
--   **INPUT:** Um vetor `A[1...n]` de n inteiros distintos, com `n ≥ 2`\
--   **OUTPUT:** `max₁ ≤ i < j ≤ n |A[i] - A[j]|`
+    - **INPUT:** Um vetor `A[1...n]` de n inteiros distintos, com `n ≥ 2`  
+    - **OUTPUT:** `min_{i ≠ j} |A[i] - A[j]| (valores não necessariamente distintos)`
 
-``` pseudo
-Ordene A em ordem crescente usando MERGESORT
-maiorDif ← |A[n] - A[1]|
-retorne maiorDif
-```
+    ```pseudo
+    Ordene A usando MERGESORT
+verifique adjacentes; se houver iguais, menorDif = 0
+caso contrário, igual ao caso distinto
+    ```
 
-------------------------------------------------------------------------
+    ---
 
-## Q2
+    ## Q2
 
-Escreva uma **recorrência** para o tempo de execução do algoritmo a
-seguir.\
-(Não é preciso resolver nem justificar.)
+    Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.  
+    (Não é preciso resolver nem justificar.)
 
-**Algoritmo 2: SomaDuplicada**
+    **Algoritmo 2: Recorrência com custo logarítmico**
 
--   **INPUT:** Um vetor `A[1...n]`
+    - **INPUT:** Um vetor `A[1...n]`
 
-``` pseudo
-se n ≤ 1 então retorna A[1]
+    (Descreva a recorrência para o tempo de execução do algoritmo que executa as chamadas recursivas e tem o custo descrito abaixo)
 
-m ← ⌊n/2⌋
+    **Custo descrito:** duas chamadas e laço de tamanho log n
 
-x ← SomaDuplicada(A[1...m])
-y ← SomaDuplicada(A[m + 1...n])
+    **Recorrência esperada:** `T(n) = 2 T(⌊n/2⌋) + Θ(log n)`
 
-soma ← 0
-para i ← 1 até 3 faça
-    para j ← 1 até n faça
-        soma ← soma + A[j]
-    fim para
-fim para
+    ---
 
-retorna x + y + soma
-```
+    ## Q3
 
-------------------------------------------------------------------------
+    Escolha, para cada item, a função que corresponde ao valor assintótico **(justo, sem folga)** e prove.
 
-## Q3
+    **(a)**  
+    (a) 2^{n} + n^5 é `O(g(n))` para qual `g(n)`? Explique e prove com constantes e n0.
 
-Escolha, para cada item, a função que corresponde ao valor assintótico
-**(justo, sem folga)** e prove.
+    **(b)**  
+    (b) 2^n é `Ω(g(n))` para qual `g(n)`? Explique e prove com constantes e n0.
 
-**(a)**\
-`15n² + 200n + 50` é `O(g(n))` para qual `g(n)`?
+    ---
 
-**(b)**\
-`50n³ + 10n² - 7` é `Ω(g(n))` para qual `g(n)`?
+    ## Q4
 
-------------------------------------------------------------------------
+    Responda cada item e justifique formalmente.
 
-## Q4
+    **(a)**  
+    (a) A: O(n^1.5) vs B: O(n log n). Compare: qual cresce mais rápido?
 
-Responda cada item e justifique formalmente.
+    Discuta que n^1.5 grows faster than n log n for large n.
 
-**(a)**\
-Considere dois algoritmos: - Algoritmo A possui tempo `O(n log n)` -
-Algoritmo B possui tempo `O(n²)`
+    **(b)**  
+    (b) Se f=Θ(g) e h=Θ(g), então (f+h)/2 = Θ(g)?
 
-Em teoria, A é mais eficiente que B para entradas suficientemente
-grandes? Justifique.
+    Mostre que sim.
 
-**(b)**\
-Se `f(n) = Θ(g(n))` e `h(n) = O(g(n))`, é necessariamente verdade que\
-`f(n) - h(n) = Ω(g(n))`?
+    ---
 
-------------------------------------------------------------------------
+    ## Q5
 
-## Q5
+    Escreva um algoritmo de **divisão e conquista** para o seguinte problema.  
+    Escreva pseudocódigo detalhado e justifique brevemente sua corretude.  
+    O algoritmo deve dividir o vetor em duas partes em cada chamada recursiva.
 
-Escreva um algoritmo de **divisão e conquista** para o seguinte
-problema.\
-Escreva pseudocódigo detalhado e justifique brevemente sua corretude.\
-O algoritmo deve dividir o vetor em duas partes em cada chamada
-recursiva.
+    - **INPUT:** Um vetor `A[1..n]` de inteiros não-negativos  
+    - **OUTPUT:** Σ A[i]^2 tal que A[i] é par
 
--   **INPUT:** Um vetor `A[1..n]` de inteiros não-negativos\
--   **OUTPUT:** A soma dos elementos ímpares de `A`
+    **Descrição adicional / restrições:** Divida e some quadrados onde aplicável
+
