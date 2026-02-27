@@ -31,8 +31,6 @@ fim para
 retorne menorDif
 ```
 
-Justifique por que este procedimento encontra corretamente a menor diferença absoluta (incluindo o caso de repetições). Analise a complexidade temporal (inclua custo da ordenação) e o espaço extra usado.
-
 ---
 
 ## Q2
@@ -46,8 +44,6 @@ Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.
 
 O algoritmo realiza duas chamadas recursivas (cada uma sobre metade do vetor) e faz trabalho adicional Θ(log n) por nível (por exemplo, um laço de comprimento log n).
 
-**Recorrência esperada:**  
-`T(n) = 2 T(⌊n/2⌋) + Θ(log n)`
 
 ---
 
@@ -104,7 +100,6 @@ function SomaQuadradosPares(A[1..n]):
     return s1 + s2
 ```
 
-Justifique por que a combinação `s1 + s2` devolve a soma correta dos quadrados dos elementos pares e escreva a recorrência para o tempo de execução do algoritmo.
 
 ---
 
