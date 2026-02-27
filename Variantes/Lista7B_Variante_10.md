@@ -33,7 +33,6 @@ Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.
 
 **Custo descrito:** três chamadas e custo Θ(n²)
 
-**Recorrência esperada:** `T(n) = 3 T(⌊n/2⌋) + Θ(n²)`
 
 ---
 
