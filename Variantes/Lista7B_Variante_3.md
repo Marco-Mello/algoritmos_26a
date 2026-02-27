@@ -49,8 +49,6 @@ O algoritmo realiza quatro chamadas recursivas, cada uma sobre um subvetor de ta
 - `x4 = Algo(A[⌊n/2⌋+1..n])`
 - custo extra no nível: Θ(n)
 
-**Recorrência esperada:**  
-`T(n) = 4 T(⌊n/2⌋) + Θ(n)`
 
 ---
 
@@ -75,7 +73,7 @@ Considere dois algoritmos:
 - Algoritmo A possui tempo de execução `O(n)`.
 - Algoritmo B possui tempo de execução `O(n log n)`.
 
-Pergunta: qual é mais eficiente para entradas suficientemente grandes? Explique por que `O(n)` domina `O(n log n)` assintoticamente e comente possíveis custos ocultos e casos práticos.
+Pergunta: qual é mais eficiente para entradas suficientemente grandes? Explique por que.
 
 **(b)**  
 Se `f(n) = O(g(n))` e `h(n) = O(g(n))`, então `f(n) + h(n) = O(g(n))`? Prove formalmente; discuta sob quais condições a soma é `Θ(g(n))`.
@@ -107,8 +105,4 @@ function ContaPares(A[1..n]):
     return c1 + c2
 ```
 
-Justifique por que a combinação `c1 + c2` produz corretamente a resposta e escreva a recorrência para o tempo de execução do algoritmo.
-
 ---
-
-**Instruções para entrega:** responda todas as questões mostrando todos os passos e justificativas. Seja claro e conciso.
