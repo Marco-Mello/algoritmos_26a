@@ -1,86 +1,108 @@
-    # Lista 7B - Variante 1
 
-    **Nome:**
+# Lista 7B - Variante 1
 
-    ---
+**Nome:** __________________________
 
-    ## Q1
+---
 
-    Analise o algoritmo a seguir. Justifique formalmente sua corretude (explique por que o algoritmo resolve corretamente o problema proposto) e analise o tempo de execução.  
-    A sua resposta deve estar em **ϴ**, se possível. Caso não seja possível, utilize notação **O** com uma análise justa (sem folga) para o pior caso.
+## Q1
 
-    **Algoritmo 1: Menor diferença entre dois elementos distintos em valor absoluto**
+Analise o algoritmo a seguir. Justifique formalmente sua corretude (explique por que o algoritmo resolve corretamente o problema proposto) e analise o tempo de execução.
+A sua resposta deve estar em **Θ**, se possível. Caso não seja possível, utilize notação **O** com uma análise justa (sem folga) para o pior caso.
 
-    - **INPUT:** Um vetor `A[1...n]` de n inteiros, com `n ≥ 2`  
-    - **OUTPUT:** `min_{1 ≤ i < j ≤ n} |A[i] - A[j]|`
+**Algoritmo 1: Menor diferença entre dois elementos distintos em valor absoluto**
 
-    ```pseudo
-    Ordene A em ordem crescente usando MERGESORT
+- **INPUT:** Um vetor `A[1..n]` de inteiros distintos, com `n ≥ 2`
+- **OUTPUT:** `min_{1 ≤ i < j ≤ n} |A[i] - A[j]|`
+
+Ordene **A** em ordem crescente usando **MERGESORT**.
+
+```pseudo
 menorDif ← |A[2] - A[1]|
-
 para i ← 2 até n-1 faça
     dif ← |A[i+1] - A[i]|
     se dif < menorDif então
         menorDif ← dif
     fim se
 fim para
-    ```
+retorne menorDif
+```
 
-    ---
+---
 
-    ## Q2
+## Q2
 
-    Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.  
-    (Não é preciso resolver nem justificar.)
+Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.
+(Não é preciso resolver nem justificar.)
 
-    **Algoritmo 2: TriplaSoma (original)**
+**Algoritmo 2: TriplaSoma**
 
-    - **INPUT:** Um vetor `A[1...n]`
+- **INPUT:** Um vetor `A[1..n]`
 
-    (Descreva a recorrência para o tempo de execução do algoritmo que executa as chamadas recursivas e tem o custo descrito abaixo)
+O algoritmo realiza:
 
-    **Custo descrito:** Três chamadas recursivas: x=TriplaSoma(1..m), y=TriplaSoma(m+1..n), z=TriplaSoma(1..m); laços 4×n
+- Três chamadas recursivas:
+  - `x = TriplaSoma(A[1..m])`
+  - `y = TriplaSoma(A[m+1..n])`
+  - `z = TriplaSoma(A[1..m])`
+- Dois laços aninhados que executam 4 × n operações no total em cada nível.
 
-    **Recorrência esperada:** `T(n) = 3 T(⌊n/2⌋) + Θ(n)`
+Escreva a recorrência para `T(n)`.
 
-    ---
+---
 
-    ## Q3
+## Q3
 
-    Escolha, para cada item, a função que corresponde ao valor assintótico **(justo, sem folga)** e prove.
+Escolha, para cada item, a função que corresponde ao valor assintótico **(justo, sem folga)** e prove formalmente, indicando constantes positivas e valor de `n₀`.
 
-    **(a)**  
-    (a) 10n^2 + 100n - 1 é `O(g(n))` para qual `g(n)`? Explique e prove com constantes e n0.
+**(a)**  
+`10n² + 100n - 1` é `O(g(n))` para qual `g(n)`?
 
-    **(b)**  
-    (b) 20n^3 - 10n + 100 é `Ω(g(n))` para qual `g(n)`? Explique e prove com constantes e n0.
+**(b)**  
+`20n³ - 10n + 100` é `Ω(g(n))` para qual `g(n)`?
 
-    ---
+---
 
-    ## Q4
+## Q4
 
-    Responda cada item e justifique formalmente.
+Responda cada item e justifique formalmente.
 
-    **(a)**  
-    (a) A: O(n^2) vs B: O(n^3). Bob afirma A mais eficiente — avaliar.
+**(a)**  
+Bob está analisando dois algoritmos:
 
-    Explique por que A é teoricamente melhor no limite, mas discuta constantes e casos práticos.
+- Algoritmo A possui tempo de execução `O(n²)`
+- Algoritmo B possui tempo de execução `O(n³)`
 
-    **(b)**  
-    (b) Se f=O(g) e h=Ω(g), é verdade que (f+h)/2 = Θ(g)?
+Ele afirma que, em teoria, o algoritmo A é mais eficiente que o algoritmo B para entradas suficientemente grandes.  
+Ele está correto? Justifique rigorosamente.
 
-    Analise contrapexemplos e condições adicionais necessárias.
+**(b)**  
+Se `f(n) = O(g(n))` e `h(n) = Ω(g(n))`, é verdade que
 
-    ---
+```
+(f(n) + h(n)) / 2 = Θ(g(n))
+```
 
-    ## Q5
+Justifique formalmente ou apresente um contraexemplo.
 
-    Escreva um algoritmo de **divisão e conquista** para o seguinte problema.  
-    Escreva pseudocódigo detalhado e justifique brevemente sua corretude.  
-    O algoritmo deve dividir o vetor em duas partes em cada chamada recursiva.
+---
 
-    - **INPUT:** Um vetor `A[1..n]` de inteiros não-negativos  
-    - **OUTPUT:** Soma dos elementos pares de A
+## Q5
 
-    **Descrição adicional / restrições:** Divida A em duas metades, recursivamente calcule soma pares esquerda e direita; combine somando-os
+Escreva um algoritmo de **divisão e conquista** para o seguinte problema.
+Escreva pseudocódigo detalhado e justifique brevemente sua corretude.
+O algoritmo deve dividir o vetor em duas partes em cada chamada recursiva.
 
+- **INPUT:** Um vetor `A[1..n]` de inteiros não-negativos
+- **OUTPUT:** Soma dos elementos pares de `A`
+
+Requisitos:
+
+- Caso base claramente definido.
+- Divisão explícita em duas metades.
+- Combinação correta dos resultados parciais.
+- Justificativa breve da corretude.
+
+---
+
+**Instruções:** Mostre todos os passos, desigualdades e transformações quando fizer provas assintóticas.
