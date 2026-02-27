@@ -105,4 +105,3 @@ Requisitos:
 
 ---
 
-**Instruções:** Mostre todos os passos, desigualdades e transformações quando fizer provas assintóticas.
