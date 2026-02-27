@@ -31,10 +31,6 @@ Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.
 
 (Descreva a recorrência para o tempo de execução do algoritmo que executa as chamadas recursivas e tem o custo descrito abaixo)
 
-**Custo descrito:** apenas uma chamada recursiva e laço n
-
-**Recorrência esperada:** `T(n) = T(⌊n/2⌋) + Θ(n)`
-
 ---
 
 ## Q3
@@ -61,7 +57,6 @@ Explique porque B é melhor (contrário da afirmação de Bob)
 **(b)**  
 (b) Se f=O(g) e h=Ω(g), é verdade que f+h = Θ(g)?
 
-Explique que não necessariamente (dependente de maior termo).
 
 ---
 
