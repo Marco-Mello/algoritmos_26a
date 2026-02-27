@@ -1,80 +1,111 @@
-    # Lista 7B - Variante 6
+# Lista 7B - Variante 6
 
-    **Nome:**
+**Nome:** __________________________
 
-    ---
+---
 
-    ## Q1
+## Q1
 
-    Analise o algoritmo a seguir. Justifique formalmente sua corretude (explique por que o algoritmo resolve corretamente o problema proposto) e analise o tempo de execução.  
-    A sua resposta deve estar em **ϴ**, se possível. Caso não seja possível, utilize notação **O** com uma análise justa (sem folga) para o pior caso.
+Analise o algoritmo a seguir. Justifique formalmente sua corretude (explique por que o algoritmo resolve corretamente o problema proposto) e analise o tempo de execução.  
+A sua resposta deve estar em **Θ**, se possível. Caso não seja possível, utilize notação **O** com uma análise justa (sem folga) para o pior caso.
 
-    **Algoritmo 1: Menor diferença considerando índices distintos e valores repetidos permitidos**
+**Algoritmo 1: Menor diferença considerando índices distintos e valores repetidos permitidos**
 
-    - **INPUT:** Um vetor `A[1...n]` de n inteiros distintos, com `n ≥ 2`  
-    - **OUTPUT:** `min_{i ≠ j} |A[i] - A[j]| (valores não necessariamente distintos)`
+- **INPUT:** Um vetor `A[1..n]` de inteiros, com `n ≥ 2` (valores podem repetir)
+- **OUTPUT:** `min_{i ≠ j} |A[i] - A[j]|` (valores não necessariamente distintos)
 
-    ```pseudo
-    Ordene A usando MERGESORT
-verifique adjacentes; se houver iguais, menorDif = 0
-caso contrário, igual ao caso distinto
-    ```
+Ordene **A** usando **MERGESORT** e verifique adjacentes; se houver elementos iguais, então `menorDif = 0`, caso contrário calcule o mínimo entre adjacentes como no caso de valores distintos.
 
-    ---
+```pseudo
+Ordene A usando MERGESORT
+se existe i tal que A[i] = A[i+1] então
+    retorne 0
+fim se
+menorDif ← |A[2] - A[1]|
+para i ← 2 até n-1 faça
+    dif ← |A[i+1] - A[i]|
+    se dif < menorDif então
+        menorDif ← dif
+    fim se
+fim para
+retorne menorDif
+```
 
-    ## Q2
+Justifique por que este procedimento encontra corretamente a menor diferença absoluta (incluindo o caso de repetições). Analise a complexidade temporal (inclua custo da ordenação) e o espaço extra usado.
 
-    Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.  
-    (Não é preciso resolver nem justificar.)
+---
 
-    **Algoritmo 2: Recorrência com custo logarítmico**
+## Q2
 
-    - **INPUT:** Um vetor `A[1...n]`
+Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.  
+(Não é preciso resolver nem justificar.)
 
-    (Descreva a recorrência para o tempo de execução do algoritmo que executa as chamadas recursivas e tem o custo descrito abaixo)
+**Algoritmo 2: Recorrência com custo logarítmico**
 
-    **Custo descrito:** duas chamadas e laço de tamanho log n
+- **INPUT:** Um vetor `A[1..n]`
 
-    **Recorrência esperada:** `T(n) = 2 T(⌊n/2⌋) + Θ(log n)`
+O algoritmo realiza duas chamadas recursivas (cada uma sobre metade do vetor) e faz trabalho adicional Θ(log n) por nível (por exemplo, um laço de comprimento log n).
 
-    ---
+**Recorrência esperada:**  
+`T(n) = 2 T(⌊n/2⌋) + Θ(log n)`
 
-    ## Q3
+---
 
-    Escolha, para cada item, a função que corresponde ao valor assintótico **(justo, sem folga)** e prove.
+## Q3
 
-    **(a)**  
-    (a) 2^{n} + n^5 é `O(g(n))` para qual `g(n)`? Explique e prove com constantes e n0.
+Escolha, para cada item, a função que corresponde ao valor assintótico **(justo, sem folga)** e prove formalmente, indicando constantes positivas e um valor `n₀`.
 
-    **(b)**  
-    (b) 2^n é `Ω(g(n))` para qual `g(n)`? Explique e prove com constantes e n0.
+**(a)**  
+`2^{n} + n^5` é `O(g(n))` para qual `g(n)`? Prove com constantes `c` e `n₀` que `2^{n} + n^5 = O(g(n))`.
 
-    ---
+**(b)**  
+`2^n` é `Ω(g(n))` para qual `g(n)`? Prove com constantes `c` e `n₀` que `2^n = Ω(g(n))`.
 
-    ## Q4
+---
 
-    Responda cada item e justifique formalmente.
+## Q4
 
-    **(a)**  
-    (a) A: O(n^1.5) vs B: O(n log n). Compare: qual cresce mais rápido?
+Responda cada item e justifique formalmente.
 
-    Discuta que n^1.5 grows faster than n log n for large n.
+**(a)**  
+Considere dois algoritmos:
+- Algoritmo A possui tempo de execução `O(n^{1.5})`.
+- Algoritmo B possui tempo de execução `O(n log n)`.
 
-    **(b)**  
-    (b) Se f=Θ(g) e h=Θ(g), então (f+h)/2 = Θ(g)?
+Pergunta: qual cresce mais rápido para n → ∞? Explique por que `n^{1.5}` cresce mais rápido que `n log n` (use limites ou desigualdades) e discuta implicações práticas.
 
-    Mostre que sim.
+**(b)**  
+Se `f = Θ(g)` e `h = Θ(g)`, então `(f+h)/2 = Θ(g)`? Prove formalmente com constantes ou exemplifique a igualdade de ordens de grandeza.
 
-    ---
+---
 
-    ## Q5
+## Q5
 
-    Escreva um algoritmo de **divisão e conquista** para o seguinte problema.  
-    Escreva pseudocódigo detalhado e justifique brevemente sua corretude.  
-    O algoritmo deve dividir o vetor em duas partes em cada chamada recursiva.
+Escreva um algoritmo de **divisão e conquista** para o seguinte problema.  
+Escreva pseudocódigo detalhado e justifique brevemente sua corretude.  
+O algoritmo deve dividir o vetor em duas partes em cada chamada recursiva.
 
-    - **INPUT:** Um vetor `A[1..n]` de inteiros não-negativos  
-    - **OUTPUT:** Σ A[i]^2 tal que A[i] é par
+- **INPUT:** Um vetor `A[1..n]` de inteiros não-negativos
+- **OUTPUT:** Σ A[i]^2 tal que A[i] é par
 
-    **Descrição adicional / restrições:** Divida e some quadrados onde aplicável
+**Descrição adicional / restrições:** Divida `A` em duas metades; recursivamente calcule soma dos quadrados dos pares em cada metade e combine somando os resultados.
 
+Exemplo de pseudocódigo:
+
+```pseudo
+function SomaQuadradosPares(A[1..n]):
+    if n = 0 then
+        return 0
+    if n = 1 then
+        if A[1] mod 2 = 0 then return A[1]^2 else return 0
+    m ← ⌊n/2⌋
+    s1 ← SomaQuadradosPares(A[1..m])
+    s2 ← SomaQuadradosPares(A[m+1..n])
+    return s1 + s2
+```
+
+Justifique por que a combinação `s1 + s2` devolve a soma correta dos quadrados dos elementos pares e escreva a recorrência para o tempo de execução do algoritmo.
+
+---
+
+**Instruções para entrega:** responda todas as questões mostrando todos os passos e justificativas. Seja claro e conciso.
