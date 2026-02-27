@@ -33,7 +33,6 @@ Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.
 
 **Custo descrito:** x = Rec(A[1..m]), y=Rec(A[m+1..n]) e z=Rec(A[1..m/2]) (tamanhos diferentes)
 
-**Recorrência esperada:** `T(n) = T(⌊n/2⌋) + T(⌊n/4⌋) + Θ(n)`
 
 ---
 
