@@ -1,79 +1,109 @@
-    # Lista 7B - Variante 5
+# Lista 7B - Variante 5
 
-    **Nome:**
+**Nome:** __________________________
 
-    ---
+---
 
-    ## Q1
+## Q1
 
-    Analise o algoritmo a seguir. Justifique formalmente sua corretude (explique por que o algoritmo resolve corretamente o problema proposto) e analise o tempo de execução.  
-    A sua resposta deve estar em **ϴ**, se possível. Caso não seja possível, utilize notação **O** com uma análise justa (sem folga) para o pior caso.
+Analise o algoritmo a seguir. Justifique formalmente sua corretude (explique por que o algoritmo resolve corretamente o problema proposto) e analise o tempo de execução.  
+A sua resposta deve estar em **Θ**, se possível. Caso não seja possível, utilize notação **O** com uma análise justa (sem folga) para o pior caso.
 
-    **Algoritmo 1: Menor diferença entre valores reais (vetor de doubles)**
+**Algoritmo 1: Menor diferença entre valores reais (vetor de doubles)**
 
-    - **INPUT:** Um vetor `A[1...n]` de n inteiros distintos, com `n ≥ 2`  
-    - **OUTPUT:** `min_{1 ≤ i < j ≤ n} |A[i] - A[j]|, A contém reais distintos`
+- **INPUT:** Um vetor `A[1..n]` de números reais distintos, com `n ≥ 2`  
+- **OUTPUT:** `min_{1 ≤ i < j ≤ n} |A[i] - A[j]|`, onde os valores de A são reais distintos
 
-    ```pseudo
-    Ordene A em ordem crescente usando MERGESORT (com comparação de reais)
-calcule menorDif entre adjacentes como no algoritmo original
-    ```
+Ordene **A** em ordem crescente usando **MERGESORT** (comparações em ponto flutuante).
 
-    ---
+```pseudo
+Ordene A usando MERGESORT
+menorDif ← |A[2] - A[1]|
+para i ← 2 até n-1 faça
+    dif ← |A[i+1] - A[i]|
+    se dif < menorDif então
+        menorDif ← dif
+    fim se
+fim para
+retorne menorDif
+```
 
-    ## Q2
+Justifique por que considerar apenas pares adjacentes após ordenar é suficiente para encontrar a diferença mínima entre quaisquer dois elementos. Discuta também cuidados numéricos mínimos ao comparar reais (por exemplo, estabilidade das comparações, presunções sobre precisão) e dê a análise de complexidade temporal em Θ(n log n).
 
-    Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.  
-    (Não é preciso resolver nem justificar.)
+---
 
-    **Algoritmo 2: Recorrência com custo quadrático**
+## Q2
 
-    - **INPUT:** Um vetor `A[1...n]`
+Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.  
+(Não é preciso resolver nem justificar.)
 
-    (Descreva a recorrência para o tempo de execução do algoritmo que executa as chamadas recursivas e tem o custo descrito abaixo)
+**Algoritmo 2: Recorrência com custo quadrático**
 
-    **Custo descrito:** duas chamadas e laços aninhados O(n²)
+- **INPUT:** Um vetor `A[1..n]`
 
-    **Recorrência esperada:** `T(n) = 2 T(⌊n/2⌋) + Θ(n²)`
+O algoritmo realiza duas chamadas recursivas (cada uma sobre metade do vetor) e faz trabalho adicional Θ(n²) por nível devido a laços aninhados que percorrem o vetor.
 
-    ---
+**Recorrência esperada:**  
+`T(n) = 2 T(⌊n/2⌋) + Θ(n²)`
 
-    ## Q3
+---
 
-    Escolha, para cada item, a função que corresponde ao valor assintótico **(justo, sem folga)** e prove.
+## Q3
 
-    **(a)**  
-    (a) 100n + 1000 é `O(g(n))` para qual `g(n)`? Explique e prove com constantes e n0.
+Escolha, para cada item, a função que corresponde ao valor assintótico **(justo, sem folga)** e prove formalmente, indicando constantes positivas e um valor `n₀`.
 
-    **(b)**  
-    (b) n é `Ω(g(n))` para qual `g(n)`? Explique e prove com constantes e n0.
+**(a)**  
+`100 n + 1000` é `O(g(n))` para qual `g(n)`? Prove com constantes `c` e `n₀` que `100 n + 1000 = O(g(n))`.
 
-    ---
+**(b)**  
+`n` é `Ω(g(n))` para qual `g(n)`? Prove com constantes `c` e `n₀` que `n = Ω(g(n))`.
 
-    ## Q4
+---
 
-    Responda cada item e justifique formalmente.
+## Q4
 
-    **(a)**  
-    (a) A: O(2^n) vs B: O(n!). Quem é melhor?
+Responda cada item e justifique formalmente.
 
-    Explique classes exponencial vs factorial
+**(a)**  
+Considere dois algoritmos:
 
-    **(b)**  
-    (b) Se f=O(g) e h=Ω(g), então f·h = Θ(g^2)?
+- Algoritmo A possui tempo de execução `O(2^n)`.
+- Algoritmo B possui tempo de execução `O(n!)`.
 
-    Mostre que não necessariamente, dê contraexemplo.
+Pergunta: Qual é "melhor" (mais eficiente) assintoticamente? Explique as classes exponencial e factorial, comparando taxas de crescimento (por exemplo, n! cresce mais rápido que 2^n) e discuta implicações práticas.
 
-    ---
+**(b)**  
+Se `f = O(g)` e `h = Ω(g)`, é verdade que `f·h = Θ(g^2)`? Forneça um contraexemplo rigoroso mostrando que a afirmação não é necessariamente verdadeira.
 
-    ## Q5
+---
 
-    Escreva um algoritmo de **divisão e conquista** para o seguinte problema.  
-    Escreva pseudocódigo detalhado e justifique brevemente sua corretude.  
-    O algoritmo deve dividir o vetor em duas partes em cada chamada recursiva.
+## Q5
 
-    - **INPUT:** Um vetor `A[1..n]` de inteiros não-negativos  
-    - **OUTPUT:** Máximo elemento par em A (retornar -∞ se não existir)
+Escreva um algoritmo de **divisão e conquista** para o seguinte problema.  
+Escreva pseudocódigo detalhado e justifique brevemente sua corretude.  
+O algoritmo deve dividir o vetor em duas partes em cada chamada recursiva.
 
-    **Descrição adicional / restrições:** Divida A; combine retornando max entre maxes da esquerda e direita
+- **INPUT:** Um vetor `A[1..n]` de inteiros não-negativos  
+- **OUTPUT:** Máximo elemento par em A (retornar `-∞` se não existir)
 
+**Descrição adicional / restrições:** Divida `A` em duas metades; para cada metade recursivamente obtenha o máximo par (ou `-∞` se não existir) e combine retornando `max(max_esq, max_dir)`.
+
+Exemplo de pseudocódigo:
+
+```pseudo
+function MaximoPar(A[1..n]):
+    if n = 0 then
+        return -∞
+    if n = 1 then
+        if A[1] mod 2 = 0 then return A[1] else return -∞
+    m ← ⌊n/2⌋
+    lmax ← MaximoPar(A[1..m])
+    rmax ← MaximoPar(A[m+1..n])
+    return max(lmax, rmax)
+```
+
+Justifique por indução que a combinação devolve o máximo par global e escreva a recorrência para o tempo de execução do algoritmo.
+
+---
+
+**Instruções para entrega:** responda todas as questões mostrando todos os passos e justificativas. Seja claro e conciso.
