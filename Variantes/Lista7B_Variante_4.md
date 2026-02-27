@@ -31,8 +31,6 @@ Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.
 
 (Descreva a recorrência para o tempo de execução do algoritmo que executa as chamadas recursivas e tem o custo descrito abaixo)
 
-**Custo descrito:** x = Rec(A[1..m]), y=Rec(A[m+1..n]) e z=Rec(A[1..m/2]) (tamanhos diferentes)
-
 
 ---
 
