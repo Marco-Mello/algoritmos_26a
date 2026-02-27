@@ -28,7 +28,6 @@ fim para
 retorne menorDif
 ```
 
-Justifique por que considerar apenas pares adjacentes após ordenar é suficiente para encontrar a diferença mínima entre quaisquer dois elementos. Discuta também cuidados numéricos mínimos ao comparar reais (por exemplo, estabilidade das comparações, presunções sobre precisão) e dê a análise de complexidade temporal em Θ(n log n).
 
 ---
 
@@ -43,8 +42,6 @@ Escreva uma **recorrência** para o tempo de execução do algoritmo a seguir.
 
 O algoritmo realiza duas chamadas recursivas (cada uma sobre metade do vetor) e faz trabalho adicional Θ(n²) por nível devido a laços aninhados que percorrem o vetor.
 
-**Recorrência esperada:**  
-`T(n) = 2 T(⌊n/2⌋) + Θ(n²)`
 
 ---
 
@@ -106,4 +103,3 @@ Justifique por indução que a combinação devolve o máximo par global e escre
 
 ---
 
-**Instruções para entrega:** responda todas as questões mostrando todos os passos e justificativas. Seja claro e conciso.
