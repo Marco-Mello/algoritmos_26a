@@ -42,9 +42,7 @@ O algoritmo realiza:
   - `y = SomaDuplicada(A[m+1..n])`
 - Três laços que percorrem `A` inteiramente (cada um executa Θ(n) operações).
 
-Escreva a recorrência para `T(n)` (inclua a hipótese em que `m = ⌊n/2⌋`).
-
-**Recorrência esperada:** `T(n) = 2 T(⌊n/2⌋) + Θ(n)`
+Escreva a recorrência para `T(n)` (inclua a hipótese em que `m = ⌊n/2⌋`)
 
 ---
 
